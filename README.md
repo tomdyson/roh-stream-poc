@@ -14,8 +14,9 @@ Run in an Android simulator
 
 ## Todo
 
+ - [x] Styling improvements
+ - [x] Bigger buttons
  - [ ] Catch keyboard movements
- - [ ] Bigger buttons
- - [ ] Styling improvements
  - [ ] Get working on Android
  - [ ] Different styles for different devices
+ - [ ] Look at video controls https://github.com/itsnubix/react-native-video-controls
