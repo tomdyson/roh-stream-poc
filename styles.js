@@ -30,12 +30,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'black',
     },
-    title: {
-        fontSize: 30,
-        fontWeight: '600',
-        textAlign: 'center',
-        color: 'white',
-    },
     listing: {
         fontSize: 32,
         fontWeight: '500',
