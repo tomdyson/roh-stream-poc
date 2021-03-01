@@ -1,5 +1,12 @@
 import { StyleSheet } from 'react-native'
 
+const colours = {
+    'mint': '#e0ffff',
+    'darkBlue': '#00264d',
+    'midBlue': '#004d99',
+    'cyan': '#a8dadc',
+}
+
 const styles = StyleSheet.create({
     homeContainer: {
         flexDirection: 'row',
@@ -127,9 +134,9 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginTop: 30,
         width: 440,
-        backgroundColor: '#004d99',
+        backgroundColor: colours.midBlue,
         opacity: 0.9
     }
 });
 
-export { styles }
+export { colours, styles }

@@ -1,4 +1,4 @@
-import { styles } from './styles'
+import { colours, styles } from './styles'
 import React from 'react'
 import {
     ImageBackground,
@@ -43,14 +43,14 @@ class Home extends React.Component {
                     <View style={{ flexDirection: 'row' }}>
                         <Image style={styles.logo} source={require('./logo-roh.png')} />
                         <Text style={styles.header}>
-                            <Text style={{ color: '#e0ffff' }}>Royal Opera House</Text> Stream
+                            <Text style={{ color: colours.mint }}>Royal Opera House</Text> Stream
                         </Text>
                     </View>
                     {this.state.results.map(video => (
                         <View style={styles.tile} key={video.id}>
                             <TouchableHighlight
                                 style={{ borderRadius: 10, padding: 6 }}
-                                underlayColor='#a8dadc'
+                                underlayColor={colours.cyan}
                                 onPress={() => this.props.navigation.navigate('Details', { video: video })}>
                                 <ImageBackground
                                     style={{ width: '100%', height: '100%' }}

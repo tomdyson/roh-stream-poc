@@ -1,4 +1,4 @@
-import { styles } from './styles'
+import { styles, colours } from './styles'
 import React from 'react'
 import {
     Text,
@@ -24,7 +24,9 @@ class Cast extends React.Component {
                     <Text style={styles.subhead}>Cast</Text>
                     <Text style={styles.castListing}>
                         {video.data.performers.map(performer => (
-                            <Text key={performer.name}><Text style={{ color: '#e0ffff' }}>{performer.role}:</Text> {performer.name}{"\n"}</Text>
+                            <Text key={performer.name}>
+                                <Text style={{ color: colours.mint }}>{performer.role}:</Text> {performer.name}{"\n"}
+                            </Text>
                         ))
                         }
                     </Text>
@@ -32,7 +34,9 @@ class Cast extends React.Component {
                     <Text style={styles.subhead}>Crew</Text>
                     <Text style={styles.castListing}>
                         {video.data.members.map(member => (
-                            <Text key={member.name}><Text style={{ color: '#e0ffff' }}>{member.role}:</Text> {member.name}{"\n"}</Text>
+                            <Text key={member.name}>
+                                <Text style={{ color: colours.mint }}>{member.role}:</Text> {member.name}{"\n"}
+                            </Text>
                         ))
                         }
                     </Text>
@@ -40,7 +44,7 @@ class Cast extends React.Component {
                     <View style={{ marginLeft: 20 }}>
                         <TouchableHighlight
                             style={styles.button}
-                            underlayColor="#00264d"
+                            underlayColor={colours.darkBlue}
                             activeOpacity={1}
                             hasTVPreferredFocus={true}
                             onPress={() => this.props.navigation.navigate('Details', { video })}>

@@ -1,4 +1,4 @@
-import { styles } from './styles'
+import { styles, colours } from './styles'
 import React from 'react'
 import {
     ImageBackground,
@@ -36,7 +36,7 @@ class Details extends React.Component {
 
                     <TouchableHighlight
                         style={styles.button}
-                        underlayColor="#00264d"
+                        underlayColor={colours.darkBlue}
                         activeOpacity={1}
                         hasTVPreferredFocus={true}
                         onPress={() => this.props.navigation.navigate('Player', { video })}>
@@ -45,7 +45,7 @@ class Details extends React.Component {
 
                     <TouchableHighlight
                         style={styles.button}
-                        underlayColor="#00264d"
+                        underlayColor={colours.darkBlue}
                         activeOpacity={1}
                         onPress={() => this.props.navigation.navigate('Cast', { video })}>
                         <Text style={styles.buttonText}>Cast</Text>
@@ -53,7 +53,7 @@ class Details extends React.Component {
 
                     <TouchableHighlight
                         style={styles.button}
-                        underlayColor="#00264d"
+                        underlayColor={colours.darkBlue}
                         activeOpacity={1}
                         onPress={() => this.props.navigation.navigate('ROH Stream')}>
                         <Text style={styles.buttonText}>More performances</Text>
