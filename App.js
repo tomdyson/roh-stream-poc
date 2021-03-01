@@ -27,7 +27,8 @@ class Home extends React.Component {
   componentDidMount = () => {
     TVMenuControl.disableTVMenuKey();
     client.query(
-      [Prismic.Predicates.at('document.type', 'video')]
+      [Prismic.Predicates.at('document.type', 'video'),],
+      { orderings: '[my.video.is_live desc]' }
     ).then(res => {
       this.setState({ results: res.results });
       // console.log(res.results[0].data);
@@ -45,20 +46,22 @@ class Home extends React.Component {
         <ScrollView contentContainerStyle={styles.homeContainer}>
           <View style={{ flexDirection: 'row' }}>
             <Image style={styles.logo} source={require('./logo-roh.png')} />
-            <Text style={styles.header}><Text style={{ color: '#e0ffff' }}>Royal Opera House</Text> Stream</Text>
+            <Text style={styles.header}>
+              <Text style={{ color: '#e0ffff' }}>Royal Opera House</Text> Stream
+            </Text>
           </View>
-          {this.state.results.map(post => (
-            <View style={styles.tile} key={post.id}>
+          {this.state.results.map(video => (
+            <View style={styles.tile} key={video.id}>
               <TouchableHighlight
                 style={{ borderRadius: 10, padding: 6 }}
                 underlayColor='#a8dadc'
-                onPress={() => this.props.navigation.navigate('Details', { post })}>
+                onPress={() => this.props.navigation.navigate('Details', { video: video })}>
                 <ImageBackground
                   style={{ width: '100%', height: '100%' }}
-                  source={{ uri: post.data.cover_image.url }}
+                  source={{ uri: video.data.cover_image.url }}
                   imageStyle={styles.background} />
               </TouchableHighlight>
-              <Text style={styles.listing}>{post.data.title[0].text}</Text>
+              <Text style={styles.listing}>{video.data.is_live === true ? '⚡ ' : ''}{video.data.title[0].text}</Text>
             </View>
           ))
           }
@@ -74,46 +77,40 @@ class Details extends React.Component {
     TVMenuControl.enableTVMenuKey();
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     on: true
-  //   };
-  // }
-
   render() {
-    const { post } = this.props.route.params;
+    const { video } = this.props.route.params;
 
-    post.video_type = 'HD';
-    if (post.data.maximum_resolution) { post.video_type = '4k' };
+    video.res = video.data.maximum_resolution ? '4k' : 'HD';
+    video.button_text = video.data.is_live ? 'Watch live' : 'Watch in ' + video.res;
+    video.duration_msg = video.data.is_live ? 'Streaming' : video.data.duration + ' minutes';
 
     return (
       // https://www.positronx.io/how-to-add-full-screen-background-image-in-react-native/
       <ImageBackground
         style={{ flex: 1 }}
-        source={{ uri: post.data.cover_image.url }}>
+        source={{ uri: video.data.cover_image.url }}>
         <View style={styles.listingContainer}>
           {/* Title */}
-          <Text style={styles.header}>{post.data.title[0].text}</Text>
+          <Text style={styles.header}>{video.data.title[0].text}</Text>
           {/* Meta */}
-          <Text style={styles.meta}>{post.data.performance_type} · {post.data.duration} minutes</Text>
+          <Text style={styles.meta}>{video.data.performance_type} · {video.duration_msg}</Text>
           {/* Description */}
-          <Text style={styles.description}>{post.data.description[0].text}</Text>
+          <Text style={styles.description}>{video.data.description[0].text}</Text>
 
           <TouchableHighlight
             style={styles.button}
             underlayColor="#00264d"
             activeOpacity={1}
             hasTVPreferredFocus={true}
-            onPress={() => this.props.navigation.navigate('Player', { post })}>
-            <Text style={styles.buttonText}>Watch in {post.video_type}</Text>
+            onPress={() => this.props.navigation.navigate('Player', { video })}>
+            <Text style={styles.buttonText}>{video.button_text}</Text>
           </TouchableHighlight>
 
           <TouchableHighlight
             style={styles.button}
             underlayColor="#00264d"
             activeOpacity={1}
-            onPress={() => this.props.navigation.navigate('Cast', { post })}>
+            onPress={() => this.props.navigation.navigate('Cast', { video })}>
             <Text style={styles.buttonText}>Cast</Text>
           </TouchableHighlight>
 
@@ -127,7 +124,6 @@ class Details extends React.Component {
 
         </View>
       </ImageBackground >
-
     );
   }
 }
@@ -138,53 +134,54 @@ class Cast extends React.Component {
     TVMenuControl.enableTVMenuKey();
   }
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     on: true
-  //   };
-  // }
-
   render() {
-    const { post } = this.props.route.params;
+    const { video } = this.props.route.params;
 
     return (
       // https://www.positronx.io/how-to-add-full-screen-background-image-in-react-native/
-      <ImageBackground
-        style={{ flex: 1 }}
-        source={{ uri: post.data.cover_image.url }}>
+      <ScrollView contentContainerStyle={styles.homeContainer}>
         <View style={styles.listingContainer}>
-          {/* Title */}
-          <Text style={styles.header}>{post.data.title[0].text} Cast</Text>
-          {/* Meta */}
-          <Text style={styles.meta}>{post.data.performance_type} · {post.data.duration} minutes</Text>
-          {/* Description */}
-          <Text style={styles.description}>{post.data.description[0].text}</Text>
+          <Text style={styles.subhead}>Cast</Text>
+          <Text style={styles.castListing}>
+            {video.data.performers.map(performer => (
+              <Text key={performer.name}><Text style={{ color: '#e0ffff' }}>{performer.role}:</Text> {performer.name}{"\n"}</Text>
+            ))
+            }
+          </Text>
 
-          <TouchableHighlight
-            style={styles.button}
-            underlayColor="#00264d"
-            activeOpacity={1}
-            hasTVPreferredFocus={true}
-            onPress={() => this.props.navigation.navigate('Details', { post })}>
-            <Text style={styles.buttonText}>Back</Text>
-          </TouchableHighlight>
+          <Text style={styles.subhead}>Crew</Text>
+          <Text style={styles.castListing}>
+            {video.data.members.map(member => (
+              <Text key={member.name}><Text style={{ color: '#e0ffff' }}>{member.role}:</Text> {member.name}{"\n"}</Text>
+            ))
+            }
+          </Text>
+
+          <View style={{ marginLeft: 20 }}>
+            <TouchableHighlight
+              style={styles.button}
+              underlayColor="#00264d"
+              activeOpacity={1}
+              hasTVPreferredFocus={true}
+              onPress={() => this.props.navigation.navigate('Details', { video })}>
+              <Text style={styles.buttonText}>Back</Text>
+            </TouchableHighlight>
+          </View>
 
         </View>
-      </ImageBackground >
+      </ScrollView>
     );
   }
 }
 
-
 class VideoPlayer extends React.Component {
 
   render() {
-    const { post } = this.props.route.params;
+    const { video } = this.props.route.params;
 
     return (
       <Video
-        source={{ uri: post.data.video_stream.url }}
+        source={{ uri: video.data.video_stream.url }}
         style={styles.backgroundVideo}
         resizeMode="cover"
         controls={true}
