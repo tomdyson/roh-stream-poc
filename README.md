@@ -24,6 +24,7 @@ https://reactnative.dev/docs/signed-apk-android#generating-the-release-apk
  - [x] Styling improvements
  - [x] Bigger buttons
  - [ ] Catch keyboard movements
- - [ ] Get working on Android
- - [ ] Different styles for different devices
+ - [x] Get working on Android
+ - [x] Different styles for different devices
  - [ ] Look at video controls https://github.com/itsnubix/react-native-video-controls
+ - [ ] Fonts https://betterprogramming.pub/using-custom-fonts-in-react-native-2019-289099609837
