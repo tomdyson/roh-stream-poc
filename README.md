@@ -12,6 +12,13 @@ Run in an Android simulator
 
 `react-native run-android`
 
+Build Android APK
+
+```
+npx react-native run-android --variant=release
+```
+https://reactnative.dev/docs/signed-apk-android#generating-the-release-apk
+
 ## Todo
 
  - [x] Styling improvements
