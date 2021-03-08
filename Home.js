@@ -1,4 +1,3 @@
-import { colours, styles } from './styles'
 import React from 'react'
 import {
     ImageBackground,
@@ -9,9 +8,9 @@ import {
     TouchableHighlight,
     TVMenuControl,
 } from 'react-native';
+import { colours, styles } from './styles'
 import Prismic from '@prismicio/client';
 
-// var running_on_tv = Platform.isTV;
 const apiEndpoint = 'https://roh-rights-demo.cdn.prismic.io/api/v2';
 const client = Prismic.client(apiEndpoint);
 
