@@ -30,6 +30,7 @@ https://reactnative.dev/docs/signed-apk-android#generating-the-release-apk
  - [ ] Fonts https://betterprogramming.pub/using-custom-fonts-in-react-native-2019-289099609837
         https://medium.com/@mehrankhandev/ultimate-guide-to-use-custom-fonts-in-react-native-77fcdf859cf4
  - [ ] Look at responsive screen sizes https://github.com/marudy/react-native-responsive-screen
+ - [ ] Look into Hermes https://reactnative.dev/docs/hermes
 
  ## Links
 
