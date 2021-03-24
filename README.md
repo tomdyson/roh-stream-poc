@@ -28,3 +28,11 @@ https://reactnative.dev/docs/signed-apk-android#generating-the-release-apk
  - [x] Different styles for different devices
  - [ ] Look at video controls https://github.com/itsnubix/react-native-video-controls
  - [ ] Fonts https://betterprogramming.pub/using-custom-fonts-in-react-native-2019-289099609837
+        https://medium.com/@mehrankhandev/ultimate-guide-to-use-custom-fonts-in-react-native-77fcdf859cf4
+ - [ ] Look at responsive screen sizes https://github.com/marudy/react-native-responsive-screen
+
+ ## Links
+
+  - https://reactnative.dev/docs/debugging#accessing-the-in-app-developer-menu
+  - https://reactnative.dev/docs/running-on-device
+  - https://developer.amazon.com/docs/fire-tv/connecting-adb-to-device.html
