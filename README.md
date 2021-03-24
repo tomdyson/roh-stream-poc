@@ -14,9 +14,8 @@ Run in an Android simulator
 
 Build Android APK
 
-```
-npx react-native run-android --variant=release
-```
+`npx react-native run-android --variant=release`
+
 https://reactnative.dev/docs/signed-apk-android#generating-the-release-apk
 
 ## Todo
