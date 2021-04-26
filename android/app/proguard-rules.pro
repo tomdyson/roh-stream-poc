@@ -8,3 +8,7 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+#### Bitmovin
+-keep class com.bitmovin.player.** { *; }
+-keep interface com.bitmovin.player.** { *; }
+-dontwarn org.slf4j.**

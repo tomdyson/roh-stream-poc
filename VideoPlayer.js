@@ -1,6 +1,5 @@
-import { styles } from './styles'
-import React from 'react'
-import Video from 'react-native-video'
+import React from 'react';
+import VideoPlayerAndroid from './VideoPlayerAndroid';
 
 class VideoPlayer extends React.Component {
 
@@ -8,11 +7,8 @@ class VideoPlayer extends React.Component {
         const { video } = this.props.route.params;
 
         return (
-            <Video
-                source={{ uri: video.data.video_stream.url }}
-                style={styles.backgroundVideo}
-                resizeMode="cover"
-                controls={true}
+            <VideoPlayerAndroid
+                uri={video.data.video_stream.url}
                 ref={(ref) => {
                     this.player = ref
                 }} />

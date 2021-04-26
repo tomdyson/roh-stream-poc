@@ -13,6 +13,7 @@ import Prismic from '@prismicio/client';
 
 const apiEndpoint = 'https://roh-rights-demo.cdn.prismic.io/api/v2';
 const client = Prismic.client(apiEndpoint);
+import VideoPlayerAndroid from './VideoPlayerAndroid';
 
 class Home extends React.Component {
     state = {
@@ -50,7 +51,10 @@ class Home extends React.Component {
                             <TouchableHighlight
                                 style={{ borderRadius: 10, padding: 6 }}
                                 underlayColor={colours.cyan}
-                                onPress={() => this.props.navigation.navigate('Details', { video: video })}>
+                                onPress={() => {
+                                    this.props.navigation.navigate('Details', {video: video});
+                                }
+                                }>
                                 <ImageBackground
                                     style={{ width: '100%', height: '100%' }}
                                     source={{ uri: video.data.cover_image.url }}
