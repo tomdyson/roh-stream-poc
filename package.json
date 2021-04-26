@@ -17,6 +17,7 @@
     "prismic-dom": "^2.2.5",
     "react": "16.13.1",
     "react-native": "npm:react-native-tvos@0.63.4-0",
+    "react-native-bitmovin-player": "^1.1.1",
     "react-native-gesture-handler": "^1.10.2",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
